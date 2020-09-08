@@ -6,9 +6,9 @@
   com.datomic/dev-local  {:mvn/version "0.9.195"}
   duct/core              {:mvn/version "0.8.0"}
   duct/module.logging    {:mvn/version "0.5.0"}
-  duct/server.http.jetty {:mvn/version "0.2.0"}
-  metosin/reitit         {:mvn/version "0.5.2"}
-  metosin/spec-tools     {:mvn/version "0.10.1"}}
+  duct/server.http.jetty {:mvn/version "0.2.1"}
+  metosin/reitit         {:mvn/version "0.5.5"}
+  metosin/spec-tools     {:mvn/version "0.10.4"}}
 
  :aliases
  {:dev
@@ -16,7 +16,7 @@
    :extra-deps  {integrant/repl {:mvn/version "0.3.1"}
                  hawk           {:mvn/version "0.2.11"}}}
 
-  :rebel-repl
+  :repl
   {:extra-deps {com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
    :main-opts  ["-m" "rebel-readline.main"]}
 

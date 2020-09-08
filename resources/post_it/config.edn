@@ -1,0 +1,18 @@
+{:duct.profile/base
+ {:duct.core/project-ns post-it
+
+  :post-it.handler.core/handler {}
+
+  :duct.server.http/jetty
+  {:handler #ig/ref :post-it.handler.core/handler
+   :logger  #ig/ref :duct.logger/timbre
+   :port    3000
+   :join?   false}}
+
+ :duct.profile/dev   #duct/include "dev"
+ ; `.edn` is needed see https://github.com/duct-framework/core/issues/23
+ :duct.profile/test  #duct/include "test.edn"
+ :duct.profile/local #duct/include "local"
+ :duct.profile/prod  {}
+
+ :duct.module/logging {}}
