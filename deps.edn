@@ -1,20 +1,29 @@
 {:paths
- ["src/clj"]
+ ["src" "resources"]
 
  :deps
- {org.clojure/clojure   {:mvn/version "1.10.1"}
-  com.datomic/dev-local {:mvn/version "0.9.195"}}
+ {org.clojure/clojure    {:mvn/version "1.10.1"}
+  com.datomic/dev-local  {:mvn/version "0.9.195"}
+  duct/core              {:mvn/version "0.8.0"}
+  duct/module.logging    {:mvn/version "0.5.0"}
+  duct/server.http.jetty {:mvn/version "0.2.0"}
+  metosin/reitit         {:mvn/version "0.5.2"}
+  metosin/spec-tools     {:mvn/version "0.10.1"}}
 
  :aliases
- {:run
-  {:main-opts  ["-m" "post-it.core"]}
+ {:dev
+  {:extra-paths ["dev/src" "dev/resources" "test"]
+   :extra-deps  {integrant/repl {:mvn/version "0.3.1"}
+                 hawk           {:mvn/version "0.2.11"}}}
+
+  :rebel-repl
+  {:extra-deps {com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
+   :main-opts  ["-m" "rebel-readline.main"]}
 
   :carve
   {:extra-deps {borkdude/carve {:git/url "https://github.com/borkdude/carve"
                                 :sha     "4b5010a09e030dbd998faff718d12400748ab3b9"}}
-   :main-opts  ["-m" "carve.main"
-                         ;"--opts" "'{:paths [\"src\" \"test\"]}'"
-                ]}
+   :main-opts  ["-m" "carve.main" #_"--opts" #_"'{:paths [\"src\" \"test\"]}'"]}
 
   :outdated
   {:extra-deps {olical/depot {:mvn/version "2.0.1"}}
@@ -50,8 +59,6 @@
    :main-opts   ["-m" "kaocha.runner"]}
 
   :uberjar
-  {:extra-deps {pack/pack.alpha {:git/url "https://github.com/juxt/pack.alpha.git"
-                                 :sha     "e518d9b2b70f4292c9988d2792b8667d88a6f4df"}}
-   :main-opts  ["-m" "mach.pack.alpha.capsule"
-                "uberjar.jar"
-                "-m" "post-it.main"]}}}
+  {:extra-deps {seancorfield/depstar {:mvn/version "1.0.94"}}
+   :main-opts  ["-m" "hf.depstar.uberjar" "configure-repl.jar"
+                "-C" "-m" "practicalli.configure-repl"]}}}
